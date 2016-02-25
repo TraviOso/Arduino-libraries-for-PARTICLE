@@ -1,7 +1,7 @@
-/* Arduino Fat16 Library
+/* Arduino SdFat Library
  * Copyright (C) 2009 by William Greiman
  *
- * This file is part of the Arduino Fat16 Library
+ * This file is part of the Arduino SdFat Library
  *
  * This Library is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,7 +14,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with the Arduino Fat16 Library.  If not, see
+ * along with the Arduino SdFat Library.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
 #ifndef FatStructs_h
@@ -90,7 +90,7 @@ struct partitionTable {
   uint32_t firstSector;
            /** Length of the partition, in blocks. */
   uint32_t totalSectors;
-};
+} __attribute__((packed));
 /** Type name for partitionTable */
 typedef struct partitionTable part_t;
 //------------------------------------------------------------------------------
@@ -114,7 +114,7 @@ struct masterBootRecord {
   uint8_t  mbrSig0;
            /** Second MBR signature byte. Must be 0XAA */
   uint8_t  mbrSig1;
-};
+} __attribute__((packed));
 /** Type name for masterBootRecord */
 typedef struct masterBootRecord mbr_t;
 //------------------------------------------------------------------------------
@@ -236,7 +236,7 @@ struct biosParmBlock {
            * should always set all of the bytes of this field to 0.
            */
   uint8_t  fat32Reserved[12];
-};
+} __attribute__((packed));
 /** Type name for biosParmBlock */
 typedef struct biosParmBlock bpb_t;
 //------------------------------------------------------------------------------
@@ -271,7 +271,7 @@ struct fat32BootSector {
   uint8_t  bootSectorSig0;
            /** must be 0XAA */
   uint8_t  bootSectorSig1;
-};
+} __attribute__((packed));
 //------------------------------------------------------------------------------
 // End Of Chain values for FAT entries
 /** FAT16 end of chain value used by Microsoft. */
@@ -366,7 +366,7 @@ struct directoryEntry {
   uint16_t firstClusterLow;
            /** 32-bit unsigned holding this file's size in bytes. */
   uint32_t fileSize;
-};
+} __attribute__((packed));
 //------------------------------------------------------------------------------
 // Definitions for directory entries
 //
